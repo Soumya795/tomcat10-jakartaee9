@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo 'Starting Build Stage'
                 withMaven(maven: 'Maven') {
                     // Log Maven version for debugging
                     sh 'mvn -version'
