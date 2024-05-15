@@ -1,17 +1,17 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven'
-    }
+    // tools {
+    //     maven 'Maven'
+    // }
 
     stages {
 
         stage('Build') {
             steps{
-                withMaven(maven: 'Maven') {
+                // withMaven(maven: 'Maven') {
                     // Build the project with Maven
-                    bat 'mvn clean package'
-                }
+                bat 'C:\Users\subhakantadas\Downloads\apache-maven-3.9.6-bin\apache-maven-3.9.6\bin'
+                // }
               }
             }
 
