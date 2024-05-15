@@ -1,17 +1,17 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven'
-    }
+    // tools {
+    //     maven 'Maven'
+    // }
 
     stages {
 
         stage('Build') {
             steps{
-                 withMaven(maven: 'Maven') {
+                 // withMaven(maven: 'Maven') {
                     // Build the project with Maven
-                    sh 'mvn clean package'
-                }
+                  mvn clean package
+                // }
               }
             }
 
