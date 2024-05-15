@@ -10,7 +10,7 @@ pipeline {
             steps{
                 // withMaven(maven: 'Maven') {
                     // Build the project with Maven
-                bat 'C:\Users\subhakantadas\Downloads\apache-maven-3.9.6-bin\apache-maven-3.9.6\bin'
+                bat 'C:\\Users\\subhakantadas\\Downloads\\apache-maven-3.9.6-bin\\apache-maven-3.9.6\\bin\\ mvn clean package'
                 // }
               }
             }
