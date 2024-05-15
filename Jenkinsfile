@@ -1,12 +1,17 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven'
+    }
 
     stages {
 
         stage('Build') {
             steps{
+                withMaven(maven: 'Maven') {
                     // Build the project with Maven
                     bat 'mvn clean package'
+                }
               }
             }
 
