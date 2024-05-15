@@ -9,8 +9,8 @@ pipeline {
             steps {
                 echo 'Starting Build Stage'
                 withMaven(maven: 'Maven') {
-                    sh 'mvn -version'
-                    sh 'mvn clean package'
+                    bat 'mvn -version'
+                    bat 'mvn clean package'
                 }
             }
         }
