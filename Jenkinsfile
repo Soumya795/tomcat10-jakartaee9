@@ -9,9 +9,7 @@ pipeline {
             steps {
                 echo 'Starting Build Stage'
                 withMaven(maven: 'Maven') {
-                    // Log Maven version for debugging
                     sh 'mvn -version'
-                    // Build the project with Maven
                     sh 'mvn clean package'
                 }
             }
