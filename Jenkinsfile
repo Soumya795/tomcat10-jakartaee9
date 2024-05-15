@@ -10,7 +10,7 @@ pipeline {
             steps{
                  // withMaven(maven: 'Maven') {
                     // Build the project with Maven
-                  mvn clean package
+                 bat 'mvn clean package'
                 // }
               }
             }
