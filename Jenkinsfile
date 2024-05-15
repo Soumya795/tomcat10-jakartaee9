@@ -8,6 +8,8 @@ pipeline {
         stage('Build') {
             steps {
                 withMaven(maven: 'Maven') {
+                    // Log Maven version for debugging
+                    bat 'mvn -version'
                     // Build the project with Maven
                     bat 'mvn clean package'
                 }
