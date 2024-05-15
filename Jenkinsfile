@@ -9,9 +9,9 @@ pipeline {
             steps {
                 withMaven(maven: 'Maven') {
                     // Log Maven version for debugging
-                    bat 'mvn -version'
+                    sh 'mvn -version'
                     // Build the project with Maven
-                    bat 'mvn clean package'
+                    sh 'mvn clean package'
                 }
             }
         }
