@@ -30,9 +30,6 @@ pipeline {
                         // Copy WAR file to Tomcat webapps directory
                         sh "scp -o StrictHostKeyChecking=no ${env.WORKSPACE}/${JAVA_WAR_PATH} root@${TOMCAT_HOST}:${TOMCAT_PATH}/webapp.war"
                     }
-
-                    // Deploy the WAR file to Tomcat
-                    sh "curl --upload-file ${env.WORKSPACE}/${JAVA_WAR_PATH} \"http://${TOMCAT_HOST}:8080/manager/text/deploy?path=/webapp&update=true\" --user admin:admin"
                 }
             }
         }
