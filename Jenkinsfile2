@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' // The name you gave in the Maven tool configuration
+        maven 'MAVEN' // The name you gave in the Maven tool configuration
         jdk 'JAVA'   // The name you gave in the JDK tool configuration
     }
 
@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build Stage'
-                withMaven(maven: 'Maven') {
+                withMaven(maven: 'MAVEN') {
                     sh 'mvn -version'
                     sh 'mvn clean package'
                 }
@@ -50,4 +50,3 @@ pipeline {
         }
     }
 }
-
