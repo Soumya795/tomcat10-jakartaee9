@@ -1,1 +1,53 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven' // The name you gave in the Maven tool configuration
+        jdk 'JAVA'   // The name you gave in the JDK tool configuration
+    }
+
+    environment {
+        TOMCAT_HOST = '20.36.135.22'
+        TOMCAT_PATH = '/opt/tomcat/webapps'
+        JAVA_WAR_PATH = 'target/*.war'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Starting Build Stage'
+                withMaven(maven: 'Maven') {
+                    sh 'mvn -version'
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sshagent(['tomcat']) {
+                        // Copy WAR file to Tomcat webapps directory
+                        sh "scp -o StrictHostKeyChecking=no ${env.WORKSPACE}/${JAVA_WAR_PATH} root@${TOMCAT_HOST}:${TOMCAT_PATH}/webapp.war"
+                    }
+
+                    // Deploy the WAR file to Tomcat
+                    sh "curl --upload-file ${env.WORKSPACE}/${JAVA_WAR_PATH} \"http://${TOMCAT_HOST}:8080/manager/text/deploy?path=/webapp&update=true\" --user admin:admin"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'Deployment succeeded!'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
 
