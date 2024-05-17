@@ -10,6 +10,8 @@ pipeline {
         TOMCAT_HOST = '20.36.135.22'
         TOMCAT_PATH = '/opt/tomcat/webapps'
         JAVA_WAR_PATH = 'target/*.war'
+        JAVA_HOME = tool name: 'JAVA', type: 'hudson.model.JDK' // Set JAVA_HOME explicitly
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
     }
 
     stages {
@@ -17,6 +19,7 @@ pipeline {
             steps {
                 echo 'Starting Build Stage'
                 withMaven(maven: 'MAVEN') {
+                    sh 'echo $JAVA_HOME'
                     sh 'mvn -version'
                     sh 'mvn clean package'
                 }
